@@ -1,0 +1,102 @@
+*************version 16/11****************
+CREATE TABLE `mem_policies` (
+    `id` INTEGER,
+	`jobId`	NUMERIC,
+	`architecture`	TEXT,
+	`mapper`	TEXT,
+	`threads`	INTEGER,
+	`socket`	TEXT,
+	`counter`	TEXT,
+	`value`	REAL,
+	`policy`	TEXT,
+	`dataset`	TEXT,
+	PRIMARY KEY(`id`)
+);
+
+CREATE TABLE `hybrid` (
+	`id` INTEGER,
+	`jobId`	NUMERIC,
+	`architecture`	TEXT,
+	`mapper`	TEXT,
+	`threads`	INTEGER,
+	`instances`	TEXT,
+	`counter`	TEXT,
+	`value`	REAL,
+	`policy`	TEXT,
+	`dataset`	TEXT,
+	PRIMARY KEY(`id`)
+);
+
+CREATE TABLE `results_mem_polcies` (
+	`architecture`	TEXT,
+	`mapper`	TEXT,
+	`dataset`	TEXT,
+	`policy`	TEXT,
+	`threads`	INTEGER,
+	`socket`	TEXT,
+	`counter`	TEXT,
+	`mean`	REAL,
+	`std`	REAL
+);
+
+CREATE TABLE `results_hybrid` (
+	`architecture`	TEXT,
+	`mapper`	TEXT,
+	`dataset`	TEXT,
+	`policy`	TEXT,
+	`threads`	INTEGER,
+	`instances`	TEXT,
+	`counter`	TEXT,
+	`mean`	REAL,
+	`std`	REAL
+);
+**********************************************************
+CREATE TABLE `mem_policies` (
+	`jobId`	NUMERIC,
+	`architecture`	TEXT,
+	`mapper`	TEXT,
+	`threads`	INTEGER,
+	`socket`	TEXT,
+	`counter`	TEXT,
+	`value`	REAL,
+	`policy`	TEXT,
+	`dataset`	TEXT,
+	PRIMARY KEY(`jobId`,`architecture`,`mapper`,`threads`,`socket`,`counter`,`policy`,`dataset`)
+);
+
+CREATE TABLE `partitions` (
+	`jobId`	NUMERIC,
+	`architecture`	TEXT,
+	`mapper`	TEXT,
+	`threads`	INTEGER,
+	`instances`	TEXT,
+	`counter`	TEXT,
+	`value`	REAL,
+	`policy`	TEXT,
+	`dataset`	TEXT,
+	PRIMARY KEY(`jobId`,`architecture`,`mapper`,`threads`,`instances`,`counter`,`policy`,`dataset`)
+);
+
+CREATE TABLE `results_mem_polcies` (
+	`architecture`	TEXT,
+	`mapper`	TEXT,
+	`dataset`	TEXT,
+	`policy`	TEXT,
+	`threads`	INTEGER,
+	`socket`	TEXT,
+	`counter`	TEXT,
+	`mean`	REAL,
+	`std`	REAL
+);
+
+CREATE TABLE `results_partitions` (
+	`architecture`	TEXT,
+	`mapper`	TEXT,
+	`dataset`	TEXT,
+	`policy`	TEXT,
+	`threads`	INTEGER,
+	`instances`	TEXT,
+	`counter`	TEXT,
+	`mean`	REAL,
+	`std`	REAL
+);

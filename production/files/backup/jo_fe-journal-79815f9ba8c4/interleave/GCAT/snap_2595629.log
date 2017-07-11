@@ -1,0 +1,622 @@
+mkdir: cannot create directory `/scratch/077-hpca4se-bioinf/jlenis/results/SNAP-Interleave': File exists
+> Benchmarks for snap-beta.18: gcat_set_039_1
+batman
+#################################################################
+# Warm up - 64 threads - T1
+#################################################################
+WarmUp.2595629.SNAP-Interleave.batman.t64
+Welcome to SNAP version 1.0beta.23.
+
+Loading index from directory... 150s.  3137208264 bases, seed size 20
+Aligning.
+Total Reads    Aligned, MAPQ >= 10    Aligned, MAPQ < 10     Unaligned              Too Short/Too Many Ns     Reads/s   Time in Aligner (s)
+11,945,249     11,307,498 (94.66%)    476,673 (3.99%)        161,078 (1.35%)        0 (0.00%)                 171,834   70
+
+
+#################################################################
+# Test multi-threading - 8 threads - T2
+#################################################################
+2595629.SNAP-Interleave.batman.t8
+Welcome to SNAP version 1.0beta.23.
+
+Loading index from directory... 154s.  3137208264 bases, seed size 20
+Aligning.
+Total Reads    Aligned, MAPQ >= 10    Aligned, MAPQ < 10     Unaligned              Too Short/Too Many Ns     Reads/s   Time in Aligner (s)
+11,945,249     11,307,498 (94.66%)    476,673 (3.99%)        161,078 (1.35%)        0 (0.00%)                 30,814    388
+
+ Performance counter stats for 'numactl --interleave=0,1 --physcpubind=0-7 ./snap-aligner single /tmp/data/indexes/HG_index_snap /tmp/data/datasets/gcat_set_039_1.fastq -t 8 -o /scratch/077-hpca4se-bioinf/jlenis/results/SNAP-Interleave/2595629.SNAP-Interleave.batman.t8.sam':
+
+S0       16         4210628905 cache-misses                                                  (22.13%)
+S0       16      7540634506738 cycles                    #    0.000 GHz                      (22.30%)
+S0       16      6686864881142 instructions              #   55.43  insns per cycle        
+                                             #    0.01  stalled cycles per insn  (27.90%)
+S0       16             442897 cs                                                            (100.00%)
+S0       16                768 migrations                                                    (100.00%)
+S0       16             829067 faults                                                      
+S0       16    <not supported> bus-cycles              
+S0       16      1247965420509 idle-cycles-frontend      #  1034.42% frontend cycles idle     (16.87%)
+S0       16       377401305263 idle-cycles-backend       #  312.82% backend  cycles idle     (16.91%)
+S0       16      3159069263954 L1-dcache-loads                                               (22.50%)
+S0       16        32115332984 L1-dcache-load-misses     #   64.57% of all L1-dcache hits    (28.05%)
+S0       16        39042950134 L1-dcache-stores                                              (27.82%)
+S0       16    <not supported> L1-dcache-store-misses  
+S0       16                  0 L1-dcache-prefetch-misses                                     (27.70%)
+S0       16         4246715582 L1-icache-load-misses                                         (27.30%)
+S0       16        43328975460 LLC-loads                                                     (10.97%)
+S0       16        17875558332 LLC-stores                                                    (11.29%)
+S0       16    <not supported> LLC-prefetches          
+S0       16      3205289152639 dTLB-loads                                                    (16.82%)
+S0       16         2482856698 dTLB-load-misses          #    4.92% of all dTLB cache hits   (16.76%)
+S0       16    <not supported> dTLB-stores             
+S0       16    <not supported> dTLB-store-misses       
+S0       16      2736697054542 iTLB-loads                                                    (16.64%)
+S0       16             581492 iTLB-load-misses          #    0.00% of all iTLB cache hits   (11.11%)
+S0       16       875856191110 branch-loads                                                  (16.79%)
+S0       16        89336886535 branch-load-misses                                            (22.17%)
+S1       16           97274460 cache-misses                                                  (22.42%)
+S1       16        28792881604 cycles                    #    0.000 GHz                      (22.15%)
+S1       16         6151557818 instructions              #    0.00  insns per cycle          (27.73%)
+S1       16              43119 cs                                                            (100.00%)
+S1       16                548 migrations                                                    (100.00%)
+S1       16              25342 faults                                                      
+S1       16    <not supported> bus-cycles              
+S1       16       244467770257 idle-cycles-frontend      #    0.00% frontend cycles idle     (16.84%)
+S1       16         9377356482 idle-cycles-backend       #    0.00% backend  cycles idle     (17.00%)
+S1       16         2972374319 L1-dcache-loads                                               (22.75%)
+S1       16          147457662 L1-dcache-load-misses                                         (28.15%)
+S1       16          167289652 L1-dcache-stores                                              (28.07%)
+S1       16    <not supported> L1-dcache-store-misses  
+S1       16                  0 L1-dcache-prefetch-misses                                     (27.83%)
+S1       16          103295648 L1-icache-load-misses                                         (27.60%)
+S1       16          227609142 LLC-loads                                                     (10.74%)
+S1       16          147785140 LLC-stores                                                    (10.80%)
+S1       16    <not supported> LLC-prefetches          
+S1       16         4015723865 dTLB-loads                                                    (16.55%)
+S1       16             165781 dTLB-load-misses                                              (16.78%)
+S1       16    <not supported> dTLB-stores             
+S1       16    <not supported> dTLB-store-misses       
+S1       16         2365052364 iTLB-loads                                                    (16.65%)
+S1       16             103279 iTLB-load-misses                                              (11.19%)
+S1       16         1118138943 branch-loads                                                  (16.67%)
+S1       16           23025402 branch-load-misses                                            (22.11%)
+S2       16          141204559 cache-misses                                                  (22.01%)
+S2       16        86610506285 cycles                    #    0.000 GHz                      (21.84%)
+S2       16        16310837803 instructions              #    0.00  insns per cycle          (27.62%)
+S2       16              67312 cs                                                            (100.00%)
+S2       16               1391 migrations                                                    (100.00%)
+S2       16              23102 faults                                                      
+S2       16    <not supported> bus-cycles              
+S2       16       620777645464 idle-cycles-frontend      #    0.00% frontend cycles idle     (16.66%)
+S2       16        23184135074 idle-cycles-backend       #    0.00% backend  cycles idle     (17.40%)
+S2       16         9789878099 L1-dcache-loads                                               (23.13%)
+S2       16          454069400 L1-dcache-load-misses                                         (29.00%)
+S2       16          483911175 L1-dcache-stores                                              (28.47%)
+S2       16    <not supported> L1-dcache-store-misses  
+S2       16                  0 L1-dcache-prefetch-misses                                     (28.46%)
+S2       16          148505748 L1-icache-load-misses                                         (28.09%)
+S2       16          476848316 LLC-loads                                                     (11.00%)
+S2       16          489313804 LLC-stores                                                    (11.04%)
+S2       16    <not supported> LLC-prefetches          
+S2       16         8228619473 dTLB-loads                                                    (16.36%)
+S2       16             123174 dTLB-load-misses                                              (16.58%)
+S2       16    <not supported> dTLB-stores             
+S2       16    <not supported> dTLB-store-misses       
+S2       16         4765546483 iTLB-loads                                                    (16.07%)
+S2       16              78925 iTLB-load-misses                                              (10.86%)
+S2       16         2957888405 branch-loads                                                  (15.95%)
+S2       16           24704152 branch-load-misses                                            (21.49%)
+S3       16          491083580 cache-misses                                                  (22.28%)
+S3       16        65173577907 cycles                    #    0.000 GHz                      (21.46%)
+S3       16        23193271702 instructions              #    0.00  insns per cycle          (27.69%)
+S3       16              70198 cs                                                            (100.00%)
+S3       16               1378 migrations                                                    (100.00%)
+S3       16              42340 faults                                                      
+S3       16    <not supported> bus-cycles              
+S3       16       295545182824 idle-cycles-frontend      #    0.00% frontend cycles idle     (17.78%)
+S3       16        14366562295 idle-cycles-backend       #    0.00% backend  cycles idle     (16.65%)
+S3       16        11257320876 L1-dcache-loads                                               (22.07%)
+S3       16          541762399 L1-dcache-load-misses                                         (27.64%)
+S3       16          583868005 L1-dcache-stores                                              (27.44%)
+S3       16    <not supported> L1-dcache-store-misses  
+S3       16                  0 L1-dcache-prefetch-misses                                     (26.53%)
+S3       16          438009626 L1-icache-load-misses                                         (26.48%)
+S3       16         1041928455 LLC-loads                                                     (11.66%)
+S3       16          388193452 LLC-stores                                                    (11.75%)
+S3       16    <not supported> LLC-prefetches          
+S3       16        15175583019 dTLB-loads                                                    (17.39%)
+S3       16            1276169 dTLB-load-misses                                              (17.20%)
+S3       16    <not supported> dTLB-stores             
+S3       16    <not supported> dTLB-store-misses       
+S3       16         7961418954 iTLB-loads                                                    (16.77%)
+S3       16             433308 iTLB-load-misses                                              (11.14%)
+S3       16         4939125830 branch-loads                                                  (16.74%)
+S3       16          171551957 branch-load-misses                                            (22.53%)
+
+     542.783478204 seconds time elapsed
+
+#################################################################
+# Test multi-threading - 16 threads - T3
+#################################################################
+2595629.SNAP-Interleave.batman.t16
+Welcome to SNAP version 1.0beta.23.
+
+Loading index from directory... 361s.  3137208264 bases, seed size 20
+Aligning.
+Total Reads    Aligned, MAPQ >= 10    Aligned, MAPQ < 10     Unaligned              Too Short/Too Many Ns     Reads/s   Time in Aligner (s)
+11,945,249     11,307,498 (94.66%)    476,673 (3.99%)        161,078 (1.35%)        0 (0.00%)                 54,342    220
+
+ Performance counter stats for 'numactl --interleave=0,1 --physcpubind=0-15 ./snap-aligner single /tmp/data/indexes/HG_index_snap /tmp/data/datasets/gcat_set_039_1.fastq -t 16 -o /scratch/077-hpca4se-bioinf/jlenis/results/SNAP-Interleave/2595629.SNAP-Interleave.batman.t16.sam':
+
+S0       16         4337954494 cache-misses                                                  (22.45%)
+S0       16      8784947720591 cycles                    #    0.000 GHz                      (22.58%)
+S0       16      7089037830761 instructions              #   50.37  insns per cycle        
+                                             #    0.01  stalled cycles per insn  (28.18%)
+S0       16             501501 cs                                                            (100.00%)
+S0       16               1237 migrations                                                    (100.00%)
+S0       16             834867 faults                                                      
+S0       16    <not supported> bus-cycles              
+S0       16      2132725682076 idle-cycles-frontend      #  1515.39% frontend cycles idle     (16.83%)
+S0       16       971451193428 idle-cycles-backend       #  690.26% backend  cycles idle     (16.67%)
+S0       16      3526239587173 L1-dcache-loads                                               (22.11%)
+S0       16        38908813828 L1-dcache-load-misses     #   70.06% of all L1-dcache hits    (27.83%)
+S0       16        46508617104 L1-dcache-stores                                              (27.77%)
+S0       16    <not supported> L1-dcache-store-misses  
+S0       16                  0 L1-dcache-prefetch-misses                                     (27.76%)
+S0       16         4372466885 L1-icache-load-misses                                         (27.84%)
+S0       16        51015681986 LLC-loads                                                     (11.15%)
+S0       16        20547923574 LLC-stores                                                    (11.15%)
+S0       16    <not supported> LLC-prefetches          
+S0       16      3514952277681 dTLB-loads                                                    (16.63%)
+S0       16         2565183823 dTLB-load-misses          #    4.63% of all dTLB cache hits   (16.53%)
+S0       16    <not supported> dTLB-stores             
+S0       16    <not supported> dTLB-store-misses       
+S0       16      2920327184651 iTLB-loads                                                    (16.21%)
+S0       16            1003268 iTLB-load-misses          #    0.00% of all iTLB cache hits   (10.83%)
+S0       16       982632662575 branch-loads                                                  (16.47%)
+S0       16        90563808582 branch-load-misses                                            (21.98%)
+S1       16          172156735 cache-misses                                                  (22.04%)
+S1       16        56817436786 cycles                    #    0.000 GHz                      (22.12%)
+S1       16        11647369778 instructions              #    0.00  insns per cycle          (27.88%)
+S1       16              50239 cs                                                            (100.00%)
+S1       16                860 migrations                                                    (100.00%)
+S1       16              39193 faults                                                      
+S1       16    <not supported> bus-cycles              
+S1       16       376297295095 idle-cycles-frontend      #    0.00% frontend cycles idle     (16.79%)
+S1       16        25309418188 idle-cycles-backend       #    0.00% backend  cycles idle     (16.78%)
+S1       16         5658329825 L1-dcache-loads                                               (22.47%)
+S1       16          247160210 L1-dcache-load-misses                                         (28.11%)
+S1       16          259692885 L1-dcache-stores                                              (28.13%)
+S1       16    <not supported> L1-dcache-store-misses  
+S1       16                  0 L1-dcache-prefetch-misses                                     (28.44%)
+S1       16          189508504 L1-icache-load-misses                                         (28.55%)
+S1       16          633787954 LLC-loads                                                     (11.23%)
+S1       16          354630048 LLC-stores                                                    (11.01%)
+S1       16    <not supported> LLC-prefetches          
+S1       16         7928500871 dTLB-loads                                                    (16.31%)
+S1       16             183072 dTLB-load-misses                                              (16.13%)
+S1       16    <not supported> dTLB-stores             
+S1       16    <not supported> dTLB-store-misses       
+S1       16         3344357902 iTLB-loads                                                    (16.11%)
+S1       16             162480 iTLB-load-misses                                              (10.80%)
+S1       16         1969479899 branch-loads                                                  (16.27%)
+S1       16           34762553 branch-load-misses                                            (21.78%)
+S2       16          213895458 cache-misses                                                  (22.04%)
+S2       16        86358780463 cycles                    #    0.000 GHz                      (21.96%)
+S2       16        15641179801 instructions              #    0.00  insns per cycle          (27.76%)
+S2       16              65775 cs                                                            (100.00%)
+S2       16                808 migrations                                                    (100.00%)
+S2       16              27693 faults                                                      
+S2       16    <not supported> bus-cycles              
+S2       16       512783622565 idle-cycles-frontend      #    0.00% frontend cycles idle     (16.39%)
+S2       16        27163601283 idle-cycles-backend       #    0.00% backend  cycles idle     (16.79%)
+S2       16         6668210444 L1-dcache-loads                                               (21.98%)
+S2       16          306787637 L1-dcache-load-misses                                         (27.60%)
+S2       16          312173224 L1-dcache-stores                                              (27.37%)
+S2       16    <not supported> L1-dcache-store-misses  
+S2       16                  0 L1-dcache-prefetch-misses                                     (27.71%)
+S2       16          170464329 L1-icache-load-misses                                         (27.52%)
+S2       16          483912451 LLC-loads                                                     (11.21%)
+S2       16          228593132 LLC-stores                                                    (11.37%)
+S2       16    <not supported> LLC-prefetches          
+S2       16         7085882366 dTLB-loads                                                    (16.96%)
+S2       16             104301 dTLB-load-misses                                              (17.29%)
+S2       16    <not supported> dTLB-stores             
+S2       16    <not supported> dTLB-store-misses       
+S2       16         4628673243 iTLB-loads                                                    (16.75%)
+S2       16              69593 iTLB-load-misses                                              (10.97%)
+S2       16         3599621094 branch-loads                                                  (16.49%)
+S2       16           28545344 branch-load-misses                                            (22.00%)
+S3       16          540479910 cache-misses                                                  (21.24%)
+S3       16        79098229827 cycles                    #    0.000 GHz                      (20.42%)
+S3       16        27344046559 instructions              #    0.00  insns per cycle          (27.60%)
+S3       16              72314 cs                                                            (100.00%)
+S3       16               1419 migrations                                                    (100.00%)
+S3       16              48064 faults                                                      
+S3       16    <not supported> bus-cycles              
+S3       16       433331126422 idle-cycles-frontend      #    0.00% frontend cycles idle     (19.77%)
+S3       16        30488091007 idle-cycles-backend       #    0.00% backend  cycles idle     (16.38%)
+S3       16        15987073093 L1-dcache-loads                                               (24.49%)
+S3       16          749828384 L1-dcache-load-misses                                         (27.52%)
+S3       16          806398324 L1-dcache-stores                                              (26.73%)
+S3       16    <not supported> L1-dcache-store-misses  
+S3       16                  0 L1-dcache-prefetch-misses                                     (22.83%)
+S3       16          587387089 L1-icache-load-misses                                         (25.01%)
+S3       16         1182164889 LLC-loads                                                     (14.74%)
+S3       16          231897120 LLC-stores                                                    (14.92%)
+S3       16    <not supported> LLC-prefetches          
+S3       16        14417369556 dTLB-loads                                                    (19.66%)
+S3       16             960449 dTLB-load-misses                                              (17.69%)
+S3       16    <not supported> dTLB-stores             
+S3       16    <not supported> dTLB-store-misses       
+S3       16         8204639750 iTLB-loads                                                    (15.63%)
+S3       16             598598 iTLB-load-misses                                              (11.04%)
+S3       16         4736322733 branch-loads                                                  (16.48%)
+S3       16          160560823 branch-load-misses                                            (22.39%)
+
+     581.591252700 seconds time elapsed
+
+#################################################################
+# Test multi-threading - 32 threads - T4 
+#################################################################
+2595629.SNAP-Interleave.batman.t32
+Welcome to SNAP version 1.0beta.23.
+
+Loading index from directory... 170s.  3137208264 bases, seed size 20
+Aligning.
+Total Reads    Aligned, MAPQ >= 10    Aligned, MAPQ < 10     Unaligned              Too Short/Too Many Ns     Reads/s   Time in Aligner (s)
+11,945,249     11,307,498 (94.66%)    476,673 (3.99%)        161,078 (1.35%)        0 (0.00%)                 113,783   105
+
+ Performance counter stats for 'numactl --interleave=0-3 --physcpubind=0-31 ./snap-aligner single /tmp/data/indexes/HG_index_snap /tmp/data/datasets/gcat_set_039_1.fastq -t 32 -o /scratch/077-hpca4se-bioinf/jlenis/results/SNAP-Interleave/2595629.SNAP-Interleave.batman.t32.sam':
+
+S0       16         2441309048 cache-misses                                                  (21.82%)
+S0       16      4154886846848 cycles                    #    0.000 GHz                      (21.77%)
+S0       16      3567941795600 instructions              #   27.18  insns per cycle        
+                                             #    0.01  stalled cycles per insn  (27.03%)
+S0       16             174376 cs                                                            (100.00%)
+S0       16                602 migrations                                                    (100.00%)
+S0       16             418358 faults                                                      
+S0       16    <not supported> bus-cycles              
+S0       16       835014678353 idle-cycles-frontend      #  636.05% frontend cycles idle     (16.60%)
+S0       16       251737411141 idle-cycles-backend       #  191.76% backend  cycles idle     (16.31%)
+S0       16      1672959895757 L1-dcache-loads                                               (21.76%)
+S0       16        16712916345 L1-dcache-load-misses     #   33.07% of all L1-dcache hits    (27.53%)
+S0       16        20223870219 L1-dcache-stores                                              (27.73%)
+S0       16    <not supported> L1-dcache-store-misses  
+S0       16                  0 L1-dcache-prefetch-misses                                     (27.78%)
+S0       16         2384819531 L1-icache-load-misses                                         (28.30%)
+S0       16        22306262911 LLC-loads                                                     (11.43%)
+S0       16         9430988852 LLC-stores                                                    (11.04%)
+S0       16    <not supported> LLC-prefetches          
+S0       16      1636482796392 dTLB-loads                                                    (16.77%)
+S0       16         1024803578 dTLB-load-misses          #    2.06% of all dTLB cache hits   (16.96%)
+S0       16    <not supported> dTLB-stores             
+S0       16    <not supported> dTLB-store-misses       
+S0       16      1367019773920 iTLB-loads                                                    (16.92%)
+S0       16            1187857 iTLB-load-misses          #    0.00% of all iTLB cache hits   (11.09%)
+S0       16       456909579715 branch-loads                                                  (16.40%)
+S0       16        46877883426 branch-load-misses                                            (21.55%)
+S1       16         2084559973 cache-misses                                                  (21.65%)
+S1       16      4174168330252 cycles                    #    0.000 GHz                      (22.07%)
+S1       16      3355979073020 instructions              #    0.00  insns per cycle          (27.46%)
+S1       16             297118 cs                                                            (100.00%)
+S1       16                228 migrations                                                    (100.00%)
+S1       16             407198 faults                                                      
+S1       16    <not supported> bus-cycles              
+S1       16       695532979196 idle-cycles-frontend      #    0.00% frontend cycles idle     (16.83%)
+S1       16       375045009985 idle-cycles-backend       #    0.00% backend  cycles idle     (16.98%)
+S1       16      1550850629731 L1-dcache-loads                                               (22.51%)
+S1       16        15972215437 L1-dcache-load-misses                                         (28.14%)
+S1       16        20532232373 L1-dcache-stores                                              (28.28%)
+S1       16    <not supported> L1-dcache-store-misses  
+S1       16                  0 L1-dcache-prefetch-misses                                     (28.14%)
+S1       16         2037593656 L1-icache-load-misses                                         (27.87%)
+S1       16        22594190565 LLC-loads                                                     (11.35%)
+S1       16        10379776380 LLC-stores                                                    (11.45%)
+S1       16    <not supported> LLC-prefetches          
+S1       16      1537866251811 dTLB-loads                                                    (17.08%)
+S1       16         1025238421 dTLB-load-misses                                              (16.51%)
+S1       16    <not supported> dTLB-stores             
+S1       16    <not supported> dTLB-store-misses       
+S1       16      1360331541144 iTLB-loads                                                    (16.36%)
+S1       16            1184188 iTLB-load-misses                                              (10.79%)
+S1       16       451481958759 branch-loads                                                  (16.14%)
+S1       16        45476285742 branch-load-misses                                            (21.37%)
+S2       16           68056583 cache-misses                                                  (21.28%)
+S2       16        29679372608 cycles                    #    0.000 GHz                      (22.41%)
+S2       16         4589512559 instructions              #    0.00  insns per cycle          (28.31%)
+S2       16              57215 cs                                                            (100.00%)
+S2       16                731 migrations                                                    (100.00%)
+S2       16              11332 faults                                                      
+S2       16    <not supported> bus-cycles              
+S2       16       220078274503 idle-cycles-frontend      #    0.00% frontend cycles idle     (18.21%)
+S2       16         8931431645 idle-cycles-backend       #    0.00% backend  cycles idle     (16.87%)
+S2       16         2427729103 L1-dcache-loads                                               (22.58%)
+S2       16          132730865 L1-dcache-load-misses                                         (28.05%)
+S2       16          149924081 L1-dcache-stores                                              (27.52%)
+S2       16    <not supported> L1-dcache-store-misses  
+S2       16                  0 L1-dcache-prefetch-misses                                     (27.64%)
+S2       16           82513916 L1-icache-load-misses                                         (27.84%)
+S2       16          272607871 LLC-loads                                                     (10.61%)
+S2       16          169678012 LLC-stores                                                    (10.52%)
+S2       16    <not supported> LLC-prefetches          
+S2       16         3292600859 dTLB-loads                                                    (16.29%)
+S2       16              88469 dTLB-load-misses                                              (17.04%)
+S2       16    <not supported> dTLB-stores             
+S2       16    <not supported> dTLB-store-misses       
+S2       16         2037207663 iTLB-loads                                                    (16.79%)
+S2       16              75180 iTLB-load-misses                                              (10.79%)
+S2       16          766107804 branch-loads                                                  (15.91%)
+S2       16            8881053 branch-load-misses                                            (21.57%)
+S3       16          260924018 cache-misses                                                  (21.85%)
+S3       16        43223331198 cycles                    #    0.000 GHz                      (19.92%)
+S3       16        14521849500 instructions              #    0.00  insns per cycle          (27.27%)
+S3       16              51812 cs                                                            (100.00%)
+S3       16               1102 migrations                                                    (100.00%)
+S3       16              17173 faults                                                      
+S3       16    <not supported> bus-cycles              
+S3       16       244857818893 idle-cycles-frontend      #    0.00% frontend cycles idle     (18.49%)
+S3       16        13971409080 idle-cycles-backend       #    0.00% backend  cycles idle     (16.85%)
+S3       16         7910862716 L1-dcache-loads                                               (22.76%)
+S3       16          390042448 L1-dcache-load-misses                                         (28.49%)
+S3       16          391710727 L1-dcache-stores                                              (28.23%)
+S3       16    <not supported> L1-dcache-store-misses  
+S3       16                  0 L1-dcache-prefetch-misses                                     (27.08%)
+S3       16          266263841 L1-icache-load-misses                                         (27.22%)
+S3       16          675724954 LLC-loads                                                     (12.55%)
+S3       16          148777148 LLC-stores                                                    (12.50%)
+S3       16    <not supported> LLC-prefetches          
+S3       16         7038201481 dTLB-loads                                                    (17.49%)
+S3       16             442983 dTLB-load-misses                                              (16.51%)
+S3       16    <not supported> dTLB-stores             
+S3       16    <not supported> dTLB-store-misses       
+S3       16         4182966379 iTLB-loads                                                    (16.06%)
+S3       16             297178 iTLB-load-misses                                              (10.98%)
+S3       16         2479282451 branch-loads                                                  (16.04%)
+S3       16           85353322 branch-load-misses                                            (21.57%)
+
+     275.476313614 seconds time elapsed
+
+#################################################################
+# Test multi-threading - 48 threads - T5
+#################################################################
+2595629.SNAP-Interleave.batman.t48
+Welcome to SNAP version 1.0beta.23.
+
+Loading index from directory... 104s.  3137208264 bases, seed size 20
+Aligning.
+Total Reads    Aligned, MAPQ >= 10    Aligned, MAPQ < 10     Unaligned              Too Short/Too Many Ns     Reads/s   Time in Aligner (s)
+11,945,249     11,307,498 (94.66%)    476,673 (3.99%)        161,078 (1.35%)        0 (0.00%)                 177,616   67
+
+ Performance counter stats for 'numactl --interleave=0-5 --physcpubind=0-47 ./snap-aligner single /tmp/data/indexes/HG_index_snap /tmp/data/datasets/gcat_set_039_1.fastq -t 48 -o /scratch/077-hpca4se-bioinf/jlenis/results/SNAP-Interleave/2595629.SNAP-Interleave.batman.t48.sam':
+
+S0       16         1120511902 cache-misses                                                  (22.87%)
+S0       16      2545123936755 cycles                    #    0.000 GHz                      (21.60%)
+S0       16      2128676720265 instructions              #   17.57  insns per cycle        
+                                             #    0.01  stalled cycles per insn  (29.31%)
+S0       16              48615 cs                                                            (100.00%)
+S0       16                287 migrations                                                    (100.00%)
+S0       16             281072 faults                                                      
+S0       16    <not supported> bus-cycles              
+S0       16       448567418406 idle-cycles-frontend      #  370.30% frontend cycles idle     (19.53%)
+S0       16       116994254441 idle-cycles-backend       #   96.58% backend  cycles idle     (17.86%)
+S0       16       998285901505 L1-dcache-loads                                               (24.24%)
+S0       16        10138895666 L1-dcache-load-misses     #   20.53% of all L1-dcache hits    (29.03%)
+S0       16        12185233631 L1-dcache-stores                                              (28.05%)
+S0       16    <not supported> L1-dcache-store-misses  
+S0       16                  0 L1-dcache-prefetch-misses                                     (25.47%)
+S0       16         1192646636 L1-icache-load-misses                                         (24.92%)
+S0       16        14451798902 LLC-loads                                                     (11.38%)
+S0       16         5815025056 LLC-stores                                                    (11.52%)
+S0       16    <not supported> LLC-prefetches          
+S0       16      1130340369557 dTLB-loads                                                    (16.43%)
+S0       16          867964499 dTLB-load-misses          #    1.71% of all dTLB cache hits   (15.56%)
+S0       16    <not supported> dTLB-stores             
+S0       16    <not supported> dTLB-store-misses       
+S0       16       923161643699 iTLB-loads                                                    (16.36%)
+S0       16            1245221 iTLB-load-misses          #    0.00% of all iTLB cache hits   (11.39%)
+S0       16       291817455522 branch-loads                                                  (16.72%)
+S0       16        29719488153 branch-load-misses                                            (22.35%)
+S1       16         1666535796 cache-misses                                                  (22.26%)
+S1       16      2646661432023 cycles                    #    0.000 GHz                      (21.89%)
+S1       16      2286813394646 instructions              #    0.00  insns per cycle          (27.27%)
+S1       16             272987 cs                                                            (100.00%)
+S1       16                181 migrations                                                    (100.00%)
+S1       16             283156 faults                                                      
+S1       16    <not supported> bus-cycles              
+S1       16       460042692359 idle-cycles-frontend      #    0.00% frontend cycles idle     (16.04%)
+S1       16       158752211060 idle-cycles-backend       #    0.00% backend  cycles idle     (16.15%)
+S1       16      1076474980081 L1-dcache-loads                                               (21.91%)
+S1       16        11019436834 L1-dcache-load-misses                                         (27.45%)
+S1       16        13316566410 L1-dcache-stores                                              (27.91%)
+S1       16    <not supported> L1-dcache-store-misses  
+S1       16                  0 L1-dcache-prefetch-misses                                     (28.50%)
+S1       16         1597392140 L1-icache-load-misses                                         (28.26%)
+S1       16        15357585336 LLC-loads                                                     (10.81%)
+S1       16         6081572372 LLC-stores                                                    (11.11%)
+S1       16    <not supported> LLC-prefetches          
+S1       16      1051240352537 dTLB-loads                                                    (16.91%)
+S1       16          746965687 dTLB-load-misses                                              (16.88%)
+S1       16    <not supported> dTLB-stores             
+S1       16    <not supported> dTLB-store-misses       
+S1       16       899766070476 iTLB-loads                                                    (16.72%)
+S1       16            1253470 iTLB-load-misses                                              (11.38%)
+S1       16       289642581045 branch-loads                                                  (16.88%)
+S1       16        29848114121 branch-load-misses                                            (22.09%)
+S2       16         1278380870 cache-misses                                                  (22.51%)
+S2       16      2523358016875 cycles                    #    0.000 GHz                      (23.08%)
+S2       16      2185422470612 instructions              #    0.00  insns per cycle          (28.52%)
+S2       16             243692 cs                                                            (100.00%)
+S2       16                264 migrations                                                    (100.00%)
+S2       16             286879 faults                                                      
+S2       16    <not supported> bus-cycles              
+S2       16       482127765047 idle-cycles-frontend      #    0.00% frontend cycles idle     (16.70%)
+S2       16       167312971140 idle-cycles-backend       #    0.00% backend  cycles idle     (16.43%)
+S2       16      1079688159221 L1-dcache-loads                                               (21.90%)
+S2       16        10794591559 L1-dcache-load-misses                                         (27.38%)
+S2       16        13581868338 L1-dcache-stores                                              (27.82%)
+S2       16    <not supported> L1-dcache-store-misses  
+S2       16                  0 L1-dcache-prefetch-misses                                     (28.06%)
+S2       16         1308686450 L1-icache-load-misses                                         (27.56%)
+S2       16        15241390609 LLC-loads                                                     (10.87%)
+S2       16         6477464223 LLC-stores                                                    (11.40%)
+S2       16    <not supported> LLC-prefetches          
+S2       16      1067974476774 dTLB-loads                                                    (16.64%)
+S2       16          743174763 dTLB-load-misses                                              (16.22%)
+S2       16    <not supported> dTLB-stores             
+S2       16    <not supported> dTLB-store-misses       
+S2       16       926213910182 iTLB-loads                                                    (16.19%)
+S2       16            1345132 iTLB-load-misses                                              (10.99%)
+S2       16       293842436848 branch-loads                                                  (16.60%)
+S2       16        30063910570 branch-load-misses                                            (21.99%)
+S3       16          155232200 cache-misses                                                  (23.10%)
+S3       16        37625063093 cycles                    #    0.000 GHz                      (22.46%)
+S3       16         9891714887 instructions              #    0.00  insns per cycle          (28.93%)
+S3       16              43879 cs                                                            (100.00%)
+S3       16               1048 migrations                                                    (100.00%)
+S3       16              18632 faults                                                      
+S3       16    <not supported> bus-cycles              
+S3       16       198266328298 idle-cycles-frontend      #    0.00% frontend cycles idle     (18.10%)
+S3       16        12825103183 idle-cycles-backend       #    0.00% backend  cycles idle     (17.70%)
+S3       16         6042654088 L1-dcache-loads                                               (23.37%)
+S3       16          297304481 L1-dcache-load-misses                                         (28.06%)
+S3       16          304722559 L1-dcache-stores                                              (28.46%)
+S3       16    <not supported> L1-dcache-store-misses  
+S3       16                  0 L1-dcache-prefetch-misses                                     (26.49%)
+S3       16          200446469 L1-icache-load-misses                                         (26.48%)
+S3       16          573294642 LLC-loads                                                     (11.34%)
+S3       16          142622958 LLC-stores                                                    (10.35%)
+S3       16    <not supported> LLC-prefetches          
+S3       16         6347161185 dTLB-loads                                                    (15.75%)
+S3       16             350189 dTLB-load-misses                                              (16.40%)
+S3       16    <not supported> dTLB-stores             
+S3       16    <not supported> dTLB-store-misses       
+S3       16         3225614526 iTLB-loads                                                    (16.23%)
+S3       16             225173 iTLB-load-misses                                              (10.96%)
+S3       16         1546544936 branch-loads                                                  (16.45%)
+S3       16           41623759 branch-load-misses                                            (22.13%)
+
+     171.878495609 seconds time elapsed
+
+#################################################################
+# Test multi-threading - 64 threads - T6
+#################################################################
+2595629.SNAP-Interleave.batman.t64
+Welcome to SNAP version 1.0beta.23.
+
+Loading index from directory... 24s.  3137208264 bases, seed size 20
+Aligning.
+Total Reads    Aligned, MAPQ >= 10    Aligned, MAPQ < 10     Unaligned              Too Short/Too Many Ns     Reads/s   Time in Aligner (s)
+11,945,249     11,307,498 (94.66%)    476,673 (3.99%)        161,078 (1.35%)        0 (0.00%)                 226,570   53
+
+ Performance counter stats for 'numactl --interleave=0-7 --physcpubind=0-63 ./snap-aligner single /tmp/data/indexes/HG_index_snap /tmp/data/datasets/gcat_set_039_1.fastq -t 64 -o /scratch/077-hpca4se-bioinf/jlenis/results/SNAP-Interleave/2595629.SNAP-Interleave.batman.t64.sam':
+
+S0       16         1199533622 cache-misses                                                  (21.18%)
+S0       16      1927440917261 cycles                    #    0.000 GHz                      (21.05%)
+S0       16      1671039260660 instructions              #   13.66  insns per cycle        
+                                             #    0.01  stalled cycles per insn  (27.23%)
+S0       16              46976 cs                                                            (100.00%)
+S0       16                178 migrations                                                    (100.00%)
+S0       16             210070 faults                                                      
+S0       16    <not supported> bus-cycles              
+S0       16       184351326982 idle-cycles-frontend      #  150.65% frontend cycles idle     (17.62%)
+S0       16       107682396285 idle-cycles-backend       #   88.00% backend  cycles idle     (16.39%)
+S0       16       770028991521 L1-dcache-loads                                               (23.72%)
+S0       16         7902956747 L1-dcache-load-misses     #   16.65% of all L1-dcache hits    (26.81%)
+S0       16         9477857075 L1-dcache-stores                                              (27.76%)
+S0       16    <not supported> L1-dcache-store-misses  
+S0       16                  0 L1-dcache-prefetch-misses                                     (25.77%)
+S0       16         1095195748 L1-icache-load-misses                                         (28.31%)
+S0       16        10435523301 LLC-loads                                                     (13.77%)
+S0       16         4319539639 LLC-stores                                                    (11.33%)
+S0       16    <not supported> LLC-prefetches          
+S0       16       792728563686 dTLB-loads                                                    (17.53%)
+S0       16          628686407 dTLB-load-misses          #    1.24% of all dTLB cache hits   (17.13%)
+S0       16    <not supported> dTLB-stores             
+S0       16    <not supported> dTLB-store-misses       
+S0       16       708189197142 iTLB-loads                                                    (16.07%)
+S0       16            1391421 iTLB-load-misses          #    0.00% of all iTLB cache hits   (10.63%)
+S0       16       230679950925 branch-loads                                                  (16.21%)
+S0       16        23854612309 branch-load-misses                                            (21.87%)
+S1       16          937364194 cache-misses                                                  (19.77%)
+S1       16      2009760794495 cycles                    #    0.000 GHz                      (21.50%)
+S1       16      1692713727754 instructions              #    0.00  insns per cycle          (27.57%)
+S1       16              23719 cs                                                            (100.00%)
+S1       16                 70 migrations                                                    (100.00%)
+S1       16             211390 faults                                                      
+S1       16    <not supported> bus-cycles              
+S1       16       203708673105 idle-cycles-frontend      #    0.00% frontend cycles idle     (18.60%)
+S1       16        89647911738 idle-cycles-backend       #    0.00% backend  cycles idle     (18.83%)
+S1       16       715827504545 L1-dcache-loads                                               (24.83%)
+S1       16         7328523680 L1-dcache-load-misses                                         (29.83%)
+S1       16         8741206072 L1-dcache-stores                                              (29.12%)
+S1       16    <not supported> L1-dcache-store-misses  
+S1       16                  0 L1-dcache-prefetch-misses                                     (28.69%)
+S1       16          791339175 L1-icache-load-misses                                         (28.42%)
+S1       16         9436245698 LLC-loads                                                     (12.00%)
+S1       16         4303790798 LLC-stores                                                    (11.09%)
+S1       16    <not supported> LLC-prefetches          
+S1       16       801083779637 dTLB-loads                                                    (16.78%)
+S1       16          678682481 dTLB-load-misses                                              (16.14%)
+S1       16    <not supported> dTLB-stores             
+S1       16    <not supported> dTLB-store-misses       
+S1       16       736824221954 iTLB-loads                                                    (15.62%)
+S1       16            1554232 iTLB-load-misses                                              (9.36%)
+S1       16       275090733559 branch-loads                                                  (13.72%)
+S1       16        28388001911 branch-load-misses                                            (17.97%)
+S2       16         1115499294 cache-misses                                                  (21.55%)
+S2       16      1880694396070 cycles                    #    0.000 GHz                      (22.95%)
+S2       16      1616456366367 instructions              #    0.00  insns per cycle          (28.78%)
+S2       16              53540 cs                                                            (100.00%)
+S2       16                349 migrations                                                    (100.00%)
+S2       16             207502 faults                                                      
+S2       16    <not supported> bus-cycles              
+S2       16       194553550850 idle-cycles-frontend      #    0.00% frontend cycles idle     (18.03%)
+S2       16        94050912440 idle-cycles-backend       #    0.00% backend  cycles idle     (17.97%)
+S2       16       747609714169 L1-dcache-loads                                               (23.63%)
+S2       16         7612359334 L1-dcache-load-misses                                         (29.07%)
+S2       16         8937672522 L1-dcache-stores                                              (29.18%)
+S2       16    <not supported> L1-dcache-store-misses  
+S2       16                  0 L1-dcache-prefetch-misses                                     (28.18%)
+S2       16         1063609978 L1-icache-load-misses                                         (27.62%)
+S2       16        10376875153 LLC-loads                                                     (11.44%)
+S2       16         4482709340 LLC-stores                                                    (10.92%)
+S2       16    <not supported> LLC-prefetches          
+S2       16       824537253943 dTLB-loads                                                    (16.26%)
+S2       16          654222382 dTLB-load-misses                                              (15.78%)
+S2       16    <not supported> dTLB-stores             
+S2       16    <not supported> dTLB-store-misses       
+S2       16       722479873466 iTLB-loads                                                    (15.76%)
+S2       16            1623407 iTLB-load-misses                                              (9.82%)
+S2       16       246310834747 branch-loads                                                  (15.07%)
+S2       16        24535675082 branch-load-misses                                            (20.40%)
+S3       16          837831394 cache-misses                                                  (22.62%)
+S3       16      2013607213230 cycles                    #    0.000 GHz                      (20.50%)
+S3       16      1640553810057 instructions              #    0.00  insns per cycle          (28.62%)
+S3       16              43430 cs                                                            (100.00%)
+S3       16                540 migrations                                                    (100.00%)
+S3       16             233459 faults                                                      
+S3       16    <not supported> bus-cycles              
+S3       16       315593699544 idle-cycles-frontend      #    0.00% frontend cycles idle     (20.03%)
+S3       16       145183297823 idle-cycles-backend       #    0.00% backend  cycles idle     (17.23%)
+S3       16       804244347157 L1-dcache-loads                                               (23.03%)
+S3       16         8056816343 L1-dcache-load-misses                                         (26.46%)
+S3       16        10716098313 L1-dcache-stores                                              (28.11%)
+S3       16    <not supported> L1-dcache-store-misses  
+S3       16                  0 L1-dcache-prefetch-misses                                     (23.93%)
+S3       16          930534982 L1-icache-load-misses                                         (24.32%)
+S3       16        12518972595 LLC-loads                                                     (13.71%)
+S3       16         6068370015 LLC-stores                                                    (11.76%)
+S3       16    <not supported> LLC-prefetches          
+S3       16       825377497778 dTLB-loads                                                    (18.45%)
+S3       16          612898875 dTLB-load-misses                                              (17.85%)
+S3       16    <not supported> dTLB-stores             
+S3       16    <not supported> dTLB-store-misses       
+S3       16       671465963689 iTLB-loads                                                    (16.90%)
+S3       16            1494201 iTLB-load-misses                                              (11.18%)
+S3       16       227560728345 branch-loads                                                  (16.56%)
+S3       16        22916735212 branch-load-misses                                            (22.14%)
+
+      77.696643097 seconds time elapsed
+
+#################################################################
+#################################################################

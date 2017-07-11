@@ -1,0 +1,20 @@
+
+
+create view selected_results as select jobId, architecture, mapper, instances from hybrid_enhanced where jobId in
+(select  jobId  from results_hybrid where counter="seconds" and max>3*min) and value in
+(select  max  from results_hybrid where counter="seconds" and max>3*min)
+
+
+select id from hybrid_enhanced h inner join selected_results s on h.jobId=s.jobId and h.architecture=s.architecture and h.mapper=s.mapper and h.instances=s.instances
+
+
+create view selected_results as select jobId, architecture, mapper, instances from hybrid_enhanced where jobId in
+(select  jobId  from results_hybrid where counter="seconds" and max>3*min) and value in
+(select  max  from results_hybrid where counter="seconds" and max>3*min)
+
+select * from selected_results
+
+select h.jobId, h.architecture, h.mapper, h.instances, count(*) from hybrid_enhanced h 
+inner join selected_results s 
+on h.jobId=s.jobId and h.architecture=s.architecture and h.mapper=s.mapper and h.instances=s.instances 
+group by h.jobId, h.architecture, h.mapper, h.instances
